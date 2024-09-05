@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -14,9 +15,14 @@ export class UsersService {
   create(createUserDto: CreateUserDto): Promise<User> {
     const user: User = new User();
 
+    const passwordHashed = bcrypt.hashSync(
+      createUserDto.password,
+      Number(process.env.SALT),
+    );
+
     user.email = createUserDto.email;
-    user.password = createUserDto.password;
     user.isActive = createUserDto.isActive;
+    user.password = passwordHashed;
 
     return this.userRepository.save(user);
   }
@@ -36,9 +42,14 @@ export class UsersService {
   update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user: User = new User();
 
+    const passwordHashedUpdated = bcrypt.hashSync(
+      updateUserDto.password,
+      Number(process.env.SALT),
+    );
+
     user.email = updateUserDto.email;
-    user.password = updateUserDto.password;
     user.isActive = updateUserDto.isActive;
+    user.password = passwordHashedUpdated;
 
     user.id = id;
     return this.userRepository.save(user);
