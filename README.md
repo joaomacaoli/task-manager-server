@@ -1,85 +1,103 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Criando o conteúdo do README para o backend em formato .md
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+readme_backend_content = """
+# Task Manager - Backend
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este é o repositório do backend do projeto **Task Manager**, desenvolvido utilizando **NestJS**. O backend é responsável por gerenciar as operações relacionadas às tarefas e a comunicação com o banco de dados **PostgreSQL** utilizando **TypeORM**.
 
-## Description
+## Tecnologias Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS**: Framework Node.js para construção de servidores escaláveis.
+- **TypeORM**: ORM para interação com o banco de dados.
+- **PostgreSQL**: Banco de dados relacional utilizado.
+- **JWT**: Implementação de autenticação com JSON Web Tokens.
+- **Docker**: Utilizado para containerização do banco de dados localmente.
+- **Render**: Plataforma de deploy para o backend.
+- **Neon.tech**: Plataforma de hospedagem do banco de dados PostgreSQL.
 
-## Project setup
+## Funcionalidades
 
-```bash
-$ npm install
-```
+- Autenticação de usuários via JWT.
+- CRUD de tarefas (criar, ler, atualizar, deletar).
+- Validação de dados utilizando **class-validator** e **class-transformer**.
+- Integração com o frontend via API RESTful.
 
-## Compile and run the project
+## Pré-requisitos
 
-```bash
-# development
-$ npm run start
+Para rodar o projeto localmente, é necessário ter instalado:
 
-# watch mode
-$ npm run start:dev
+- [Node.js](https://nodejs.org/) (versão 14 ou superior)
+- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [Docker](https://www.docker.com/) (para o banco de dados local)
 
-# production mode
-$ npm run start:prod
-```
+## Variáveis de Ambiente
 
-## Run tests
+Crie um arquivo `.env` na raiz do projeto com base no arquivo `.env.example` fornecido. Preencha as variáveis de ambiente necessárias para conexão com o banco de dados e outras configurações do sistema.
+
+Exemplo de variáveis de ambiente:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=your_user
+DATABASE_PASSWORD=your_password
+DATABASE_NAME=your_db
+JWT_SECRET=your_jwt_secret
 ```
 
-## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+## Como rodar o projeto
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+1. Clone o repositório:
 
-## Support
+```bash
+git clone https://github.com/joaomacaoli/task-manager-server.git
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+2. Instale as dependências:
 
-## Stay in touch
+```bash
+npm install
+# ou
+yarn install
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+3. Rode o Docker para configurar o banco de dados PostgreSQL localmente (caso esteja utilizando):
+```bash
+docker-compose up -d
+```
 
-## License
+4. Rode as migrações do banco de dados:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+npm run typeorm migration:run
+# ou
+yarn typeorm migration:run
+```
+
+5. Execute a aplicação:
+
+```bash
+npm run start:dev
+# ou
+yarn start:dev
+```
+
+6. O servidor estará disponível em:
+
+```
+http://localhost:3000
+```
+
+## Deploy
+
+O backend foi deployado utilizando a plataforma Render. Para fazer o deploy da sua própria versão:
+
+1. Crie uma conta no [Render](https://render.com/).
+2. Conecte o seu repositório na plataforma.
+3. Adicione as variáveis de ambiente no painel da Render.
+4. Configure o deploy automático a partir do branch principal.
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
