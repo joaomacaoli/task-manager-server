@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -8,21 +8,18 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       isGlobal: true, // Faz com que as variáveis de ambiente estejam disponíveis globalmente
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
+      useFactory: async () => ({
+        type: process.env.DB_TYPE as 'postgres',
+        host: process.env.DB_HOST,
+        port: parseInt(process.env.DB_PORT, 10),
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
-        ssl: configService.get<boolean>('DB_SSL')
-          ? { rejectUnauthorized: false }
-          : false, // Configuração SSL
+        ssl:
+          process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
       }),
-      inject: [ConfigService],
     }),
   ],
 })
